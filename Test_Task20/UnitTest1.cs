@@ -12,6 +12,7 @@ namespace Test_Task20
             string actual = Class1.LinearEquation(a, b, c);
             Assert.AreEqual(expected, actual);
         }
+
         [TestCase (2,1,3)]
         [TestCase (1,1,1)]
         [TestCase (1,2,-1)]
@@ -21,12 +22,19 @@ namespace Test_Task20
             int actual = Class1.ComparisonOfTwoNumber(a, b);
             Assert.AreEqual(expected, actual);
         }
-        [TestCase(25,"ƒвадцатьѕ€ть")]
+        [TestCase(25,"ƒвадцать ѕ€ть")]
         public void UppercaseNumberTest(int number, string expected)
         {
             string actual = Class1.UppercaseNumber(number);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(9)]
+        public void UppercaseNumberTestNeg(int number)
+        {
+            Assert.Throws<ArgumentException>(() => Class1.UppercaseNumber(number));
+        }
+
         [TestCase(19,false)]
         [TestCase(10,true)]
         [TestCase(0,true)]
@@ -50,7 +58,12 @@ namespace Test_Task20
             int actual = Class1.FibonacciNumber(number);
             Assert.AreEqual(expected, actual);
         }
-        [TestCase(23365,3)]
+        [TestCase(-5)]
+        public void FibonacciNumberTest_WhenNumberIsZero_ArgumenExeption(int number)
+        {
+            Assert.Throws<ArgumentException>(() => Class1.FibonacciNumber(number));
+        }
+       [TestCase(23365,3)]
         [TestCase(0,0)]
         [TestCase(-253,2)]
         public void NumberOfOddDigitsTest(int number, int expected)
@@ -62,11 +75,19 @@ namespace Test_Task20
         [TestCase(222,222)]
         [TestCase(00,00)]
         [TestCase(10,01)]
+        [TestCase(0,0)]
         public void MirrorNumberTest(int number, int expected)
         {
             int actual = Class1.MirrorNumber(number);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(-33)]
+        public void MirrorNumberTest_WhenNumberIsZero_ArgumenExeption(int number)
+        {
+            Assert.Throws<ArgumentException>(() => Class1.MirrorNumber(number));
+        }
+
         [TestCase("123","335",true)]
         [TestCase("112","333",false)]
         public void SameDigitsFromTwoNumbersTest(string number, string number2, bool expexted)

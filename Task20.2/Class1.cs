@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace Task20
             double x = 0;
             double y = 0;
             int discriminant = (b * b) * (4 * a * c);
-          
+
             if (discriminant <= 0)
             {
                 Console.WriteLine("0");
@@ -50,7 +51,6 @@ namespace Task20
             {
                 result = a + b;
                 Console.WriteLine(result);
-
             }
             if (a == b)
             {
@@ -70,8 +70,15 @@ namespace Task20
         public static string UppercaseNumber(int number)
 
         {
+            if (number < 10 || number >= 100)
+            {
+                throw new ArgumentException();
+            }
+
             int dozense = number / 10;
             int unit = number % 10;
+            string result = "";
+
             switch (dozense)
             {
                 case 1:
@@ -79,62 +86,61 @@ namespace Task20
                     switch (unit)
                     {
                         case 0:
-                            Console.WriteLine("Десять");
+                            result = "Десять";
                             break;
                         case 1:
-                            Console.WriteLine("Одиннадцать");
+                            result = "Одиннадцать";
                             break;
                         case 2:
-                            Console.WriteLine("Двенадцать");
+                            result = "Двенадцать";
                             break;
                         case 3:
-                            Console.WriteLine(" Тринадцать ");
+                            result = "Тринадцать";
                             break;
                         case 4:
-                            Console.WriteLine("Чеиырнадцать ");
+                            result = "Чеиырнадцать";
                             break;
                         case 5:
-                            Console.WriteLine("Пятнадцать");
+                            result = "Пятнадцать";
                             break;
                         case 6:
-                            Console.WriteLine(" Шестнадцать ");
+                            result = "Шестнадцать";
                             break;
                         case 7:
-                            Console.WriteLine(" Семнадцать ");
+                            result = "Семнадцать";
                             break;
                         case 8:
-                            Console.WriteLine("Восемнадцать");
+                            result = "Восемнадцать";
                             break;
                         case 9:
-                            Console.WriteLine("Девятнадцать");
+                            result = "Девятнадцать";
                             break;
-
                     }
                     break;
 
                 case 2:
-                    Console.Write("Двадцать");
+                    result = "Двадцать ";
                     break;
                 case 3:
-                    Console.Write("Тридцать ");
+                    result = "Тридцать ";
                     break;
                 case 4:
-                    Console.Write(" Сорок ");
+                    result = "Сорок ";
                     break;
                 case 5:
-                    Console.Write("Пятьдесят");
+                    result = "Пятьдесят ";
                     break;
                 case 6:
-                    Console.Write("Шестьдесят");
+                    result = "Шестьдесят ";
                     break;
                 case 7:
-                    Console.Write("Семьдесят");
+                    result = "Семьдесят ";
                     break;
                 case 8:
-                    Console.Write("Восемьдесят");
+                    result = "Восемьдесят ";
                     break;
                 case 9:
-                    Console.Write("Девяносто");
+                    result = "Девяносто ";
                     break;
             }
 
@@ -142,39 +148,39 @@ namespace Task20
             switch (unit)
             {
                 case 1:
-                    Console.Write("Один");
+                    result += "Один";
                     break;
                 case 2:
-                    Console.Write("Два");
+                    result += "Два";
                     break;
                 case 3:
-                    Console.Write("Три");
+                    result += "Три";
                     break;
                 case 4:
-                    Console.Write("Четыре");
+                    result += "Четыре";
                     break;
                 case 5:
-                    Console.Write("Пять");
+                    result += "Пять";
                     break;
                 case 6:
-                    Console.Write("Шесть");
+                    result += "Шесть";
                     break;
                 case 7:
-                    Console.Write("Семь");
+                    result += "Семь";
                     break;
                 case 8:
-                    Console.Write("Восемь");
+                    result += "Восемь";
                     break;
                 case 9:
-                    Console.Write("Девять");
+                    result += "Девять";
                     break;
             }
             Convert.ToString(number);
-            return $" {number} ";
+            return result;
         }
 
         //4) Метод получает на вход число. Проверить попадает ли оно в один из диапазонов: от 0 до 10, от 20 до 30 или от 40 до 50. *Здесь хорошим вариантом будет вернуть true или false.
-        public static bool NumberFromRange(int number)   //исправить
+        public static bool NumberFromRange(int number)
         {
             if (number >= 0 && number <= 10)
             {
@@ -201,22 +207,24 @@ namespace Task20
             {
                 if (i % 7 == 0)
                 {
-                    sum +=i;
+                    sum += i;
                 }
-                else if (i <0)
+                else if (i < 0)
                 {
-                    sum = 0; 
+                    sum = 0;
                     break;
                 }
             }
             return sum;
-
         }
 
         //6) Метод получает на вход положительное число (N). Верните N-ое число ряда Фибоначчи
-
         public static int FibonacciNumber(int number) //fibo other value
         {
+            if (number < 0)
+            {
+                throw new ArgumentException();
+            }
             int fib1 = 1;
             int fib2 = 1;
             int n = number;
@@ -242,11 +250,11 @@ namespace Task20
                 {
                     quantity++;
                 }
-                else if (tmp<0)
+                else if (tmp < 0)
                 {
                     tmp = number * -1;
                     tmp = tmp % 10;
-                    if(tmp % 2 > 0) 
+                    if (tmp % 2 > 0)
                     {
                         quantity++;
                     }
@@ -259,6 +267,10 @@ namespace Task20
         //8) Метод получает на вход число. Найти число, которое является зеркальным
         public static int MirrorNumber(int number)
         {
+            if (number < 0)
+            {
+                throw new ArgumentException();
+            }
             int result = 0;
             while (number > 0)
             {
