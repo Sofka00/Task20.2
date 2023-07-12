@@ -144,7 +144,7 @@ namespace Task20
                     break;
             }
 
-            if (dozense != 1) ;
+            if (dozense != 1) 
             switch (unit)
             {
                 case 1:

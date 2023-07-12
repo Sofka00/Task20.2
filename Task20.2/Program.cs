@@ -12,7 +12,7 @@ namespace Task20
         static void Main(string[] args)
         {
 
-            string a = Class1.UppercaseNumber(25);
+            string a = Class1.UppercaseNumber(19);
             Console.WriteLine(a);
         }
     }
